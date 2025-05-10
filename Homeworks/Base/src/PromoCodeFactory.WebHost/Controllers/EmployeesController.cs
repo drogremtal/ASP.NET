@@ -70,5 +70,38 @@ namespace PromoCodeFactory.WebHost.Controllers
 
             return employeeModel;
         }
+
+
+        /// <summary>
+        /// Удаление сотрудника по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id:guid}")]
+        public async Task<ActionResult> DeleteEmployeeByIdAsync(Guid id)
+        {
+            await _employeeRepository.DeleteByIdAsync(id);
+            return Ok();
+        }
+
+
+        [HttpPut("{data:EmployeeEditModel}")]
+        public async Task<ActionResult> UpdateEmployeeAsync(EmployeeEditModel model)
+        {
+
+            //TODO вынести в AutoMap
+            Employee employee = new Employee() { 
+            Id = model.Id,
+            Email = model.Email,
+            FirstName= model.FirstName,
+            LastName = model.LastName,
+            Roles = model.Roles.Select(q=> new Role() { Id = q.Id, Name = q.Name }).ToList()            
+            };
+
+            await _employeeRepository.UpdateEmployeeAsync(employee);
+
+            return Ok();
+
+        }
     }
 }

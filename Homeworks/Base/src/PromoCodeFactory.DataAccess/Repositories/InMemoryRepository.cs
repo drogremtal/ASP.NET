@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using PromoCodeFactory.Core.Abstractions.Repositories;
 using PromoCodeFactory.Core.Domain;
+using PromoCodeFactory.Core.Domain.Administration;
 namespace PromoCodeFactory.DataAccess.Repositories
 {
-    public class InMemoryRepository<T>: IRepository<T> where T: BaseEntity
+    public class InMemoryRepository<T> : IRepository<T> where T : BaseEntity
     {
         protected IEnumerable<T> Data { get; set; }
 
@@ -23,6 +24,28 @@ namespace PromoCodeFactory.DataAccess.Repositories
         public Task<T> GetByIdAsync(Guid id)
         {
             return Task.FromResult(Data.FirstOrDefault(x => x.Id == id));
+        }
+
+        public Task<bool> DeleteByIdAsync(Guid id)
+        {
+            var newData = Data.Where(q => q.Id != id);
+            Data = newData;
+            return Task.FromResult(true);
+        }
+
+        public Task<T> UpdateEmployeeAsync(T entity)
+        {
+            var newData = Data.FirstOrDefault(q => q.Id == entity.Id);
+
+            if (newData ==  null)
+            {
+                return Task.FromResult(default(T));
+            }
+            var update = Data.Where(q => q.Id != entity.Id).Concat(new[] { entity });
+
+            Data = update;
+            return Task.FromResult(entity);
+
         }
     }
 }
