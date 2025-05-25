@@ -13,7 +13,9 @@ namespace PromoCodeFactory.Core.Domain.PromoCodeManagement
         public string FullName => $"{FirstName} {LastName}";
 
         public string Email { get; set; }
+        public ICollection<PromoCode> PromoCodes { get; set; } = new List<PromoCode>();
 
-        //TODO: Списки Preferences и Promocodes 
+        public ICollection<CustomerPreference> PreferencesLink { get; set; } = new List<CustomerPreference>();
+
     }
 }
