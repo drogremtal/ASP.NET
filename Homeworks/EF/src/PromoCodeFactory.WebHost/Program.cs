@@ -1,5 +1,6 @@
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using PromoCodeFactory.WebHost.Controllers;
 
 namespace PromoCodeFactory.WebHost
 {

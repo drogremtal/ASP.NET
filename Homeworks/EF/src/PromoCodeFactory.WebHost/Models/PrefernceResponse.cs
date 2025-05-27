@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace PromoCodeFactory.WebHost.Models
 {
-    public class PrefernceResponse
+    public class PreferenceResponse
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

@@ -8,6 +8,8 @@ using PromoCodeFactory.Core.Domain.Administration;
 using PromoCodeFactory.Core.Domain.PromoCodeManagement;
 using PromoCodeFactory.DataAccess.Data;
 using PromoCodeFactory.DataAccess.Repositories;
+using System;
+using System.IO;
 
 namespace PromoCodeFactory.WebHost
 {
@@ -19,7 +21,7 @@ namespace PromoCodeFactory.WebHost
         {
             services.AddControllers();
      
-            // Подключаем DataContext
+            // РџРѕРґРєР»СЋС‡Р°РµРј DataContext
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlite("Data Source=test.db"));
 
@@ -42,7 +44,7 @@ namespace PromoCodeFactory.WebHost
             {
                 app.UseHsts();
             }
-            // Инициализируем БД
+            // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј Р‘Р”
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
@@ -52,6 +54,8 @@ namespace PromoCodeFactory.WebHost
             app.UseSwaggerUi(x =>
             {
                 x.DocExpansion = "list";
+   
+
             });
 
             app.UseHttpsRedirection();
