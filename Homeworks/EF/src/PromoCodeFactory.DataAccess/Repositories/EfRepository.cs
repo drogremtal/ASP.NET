@@ -4,29 +4,23 @@ using PromoCodeFactory.Core.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PromoCodeFactory.DataAccess.Repositories
 {
     public class EfRepository<T> : IRepository<T> where T : BaseEntity
     {
-        protected readonly DbContext Context;
-        protected readonly DbSet<T> DbSet;
-
-        public EfRepository(DbContext context)
+        private readonly DbContext context;
+        private readonly DbSet<T> set;
+        public Task<IEnumerable<T>> GetAllAsync()
         {
-            Context = context ?? throw new ArgumentNullException(nameof(context));
-            DbSet = context.Set<T>();
+            throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public Task<T> GetByIdAsync(Guid id)
         {
-            return await DbSet.ToListAsync();
-        }
-
-        public async Task<T> GetByIdAsync(Guid id)
-        {
-            return await DbSet.FirstOrDefaultAsync(x => x.Id == id);
+            throw new NotImplementedException();
         }
     }
 }
