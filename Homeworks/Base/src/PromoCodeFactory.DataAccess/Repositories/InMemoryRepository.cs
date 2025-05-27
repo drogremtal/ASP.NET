@@ -33,7 +33,7 @@ namespace PromoCodeFactory.DataAccess.Repositories
             return Task.FromResult(true);
         }
 
-        public Task<T> UpdateAsync(T entity)
+        public Task<T> UpdateEmployeeAsync(T entity)
         {
             var newData = Data.FirstOrDefault(q => q.Id == entity.Id);
 
@@ -44,14 +44,6 @@ namespace PromoCodeFactory.DataAccess.Repositories
             var update = Data.Where(q => q.Id != entity.Id).Concat(new[] { entity });
 
             Data = update;
-            return Task.FromResult(entity);
-
-        }
-
-        public Task<T> AddAsync(T entity)
-        {
-            var update = Data.Concat(new[] { entity });
-
             return Task.FromResult(entity);
 
         }

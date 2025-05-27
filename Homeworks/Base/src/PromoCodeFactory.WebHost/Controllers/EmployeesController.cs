@@ -85,41 +85,20 @@ namespace PromoCodeFactory.WebHost.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPut("{data:EmployeeEditModel}")]
         public async Task<ActionResult> UpdateEmployeeAsync(EmployeeEditModel model)
         {
 
             //TODO вынести в AutoMap
-            Employee employee = new Employee()
-            {
-                Id = model.Id,
-                Email = model.Email,
-                FirstName= model.FirstName,
-                LastName = model.LastName,
-                Roles = model.Roles.Select(q => new Role() { Id = q.Id, Name = q.Name }).ToList(),
-                AppliedPromocodesCount = model.AppliedPromocodesCount
+            Employee employee = new Employee() { 
+            Id = model.Id,
+            Email = model.Email,
+            FirstName= model.FirstName,
+            LastName = model.LastName,
+            Roles = model.Roles.Select(q=> new Role() { Id = q.Id, Name = q.Name }).ToList()            
             };
 
-            await _employeeRepository.UpdateAsync(employee);
-
-            return Ok();
-
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> EmployeeCreateAsync(EmployeeCreateModel model)
-        {
-
-            Employee employee = new Employee()
-            {
-                Id = Guid.NewGuid(),
-                Email = model.Email,
-                FirstName= model.FirstName,
-                LastName = model.LastName,
-                Roles = model.Roles.Select(q => new Role() { Id = q.Id, Name = q.Name }).ToList()
-            };
-
-            await _employeeRepository.AddAsync(employee);
+            await _employeeRepository.UpdateEmployeeAsync(employee);
 
             return Ok();
 
