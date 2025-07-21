@@ -20,17 +20,6 @@ public class DataContext : DbContext
     {
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
-
-        ConfigureEntities(modelBuilder);
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-   
-    }
 
     // === Синхронная инициализация БД ===
     public void Initialize()
@@ -105,75 +94,4 @@ public class DataContext : DbContext
         SaveChanges();
     }
 
-    // === Конфигурация сущностей через Fluent API ===
-    private void ConfigureEntities(ModelBuilder builder)
-    {
-        // Role
-        builder.Entity<Role>(e =>
-        {
-            e.Property(x => x.Name).HasMaxLength(100).IsRequired();
-            e.Property(x => x.Description).HasMaxLength(500);
-        });
-
-        // Employee
-        builder.Entity<Employee>(e =>
-        {
-            e.Property(x => x.FirstName).HasMaxLength(100).IsRequired();
-            e.Property(x => x.LastName).HasMaxLength(100).IsRequired();
-            e.Property(x => x.Email).HasMaxLength(255).IsRequired();
-
-            e.HasOne(x => x.Role)
-             .WithMany()
-             .HasForeignKey("RoleId")
-             .IsRequired();
-        });
-
-        // Preference
-        builder.Entity<Preference>(e =>
-        {
-            e.Property(x => x.Name).HasMaxLength(100).IsRequired();
-        });
-
-        // Customer
-        builder.Entity<Customer>(e =>
-        {
-            e.Property(x => x.FirstName).HasMaxLength(100).IsRequired();
-            e.Property(x => x.LastName).HasMaxLength(100).IsRequired();
-            e.Property(x => x.Email).HasMaxLength(255).IsRequired();
-
-            e.HasMany(x => x.PromoCodes)
-             .WithOne()
-             .HasForeignKey("CustomerId");
-        });
-
-        // PromoCode
-        builder.Entity<PromoCode>(e =>
-        {
-            e.Property(x => x.Code).HasMaxLength(50).IsRequired();
-            e.Property(x => x.ServiceInfo).HasMaxLength(500);
-            e.Property(x => x.PartnerName).HasMaxLength(255);
-
-            e.HasOne(x => x.PartnerManager)
-             .WithMany()
-             .HasForeignKey("EmployeeId");
-
-            e.HasOne(x => x.Preference)
-             .WithMany()
-             .HasForeignKey("PreferenceId");
-        });
-
-        // CustomerPreference (Many-to-Many между Customer и Preference)
-        builder.Entity<CustomerPreference>(e =>
-        {
-            e.HasKey(cp => new { cp.CustomerId, cp.PreferenceId });
-
-            e.HasOne(cp => cp.Customer)
-             .WithMany(c => c.PreferencesLink)
-             .HasForeignKey(cp => cp.CustomerId);
-
-            e.HasOne(cp => cp.Preference)
-             .WithMany(p => p.CustomersLink)
-             .HasForeignKey(cp => cp.PreferenceId);
-        });
-    }
 }
