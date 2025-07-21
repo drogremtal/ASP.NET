@@ -13,8 +13,7 @@ public class Customer
     public string FullName => $"{FirstName} {LastName}";
 
     public string Email { get; set; }
-    public ICollection<PromoCode> PromoCodes { get; set; } = new List<PromoCode>();
 
-    public ICollection<CustomerPreference> PreferencesLink { get; set; } = new List<CustomerPreference>();
-
+    public ICollection<CustomerPreference> Preferences { get; set; }
+    public ICollection<PromoCode> PromoCodes { get; set; }
 }

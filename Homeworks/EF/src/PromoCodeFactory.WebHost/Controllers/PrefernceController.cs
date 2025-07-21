@@ -38,8 +38,7 @@ public class PreferenceController : ControllerBase
         var response = preferences.Select(preference => new PreferenceResponse
         {
             Id = preference.Id,
-            Name = preference.Name,
-            CustomersLink = preference.CustomersLink
+            Name = preference.Name
         });
 
         return response;
@@ -65,8 +64,7 @@ public class PreferenceController : ControllerBase
         var response = new PreferenceResponse
         {
             Id = preference.Id,
-            Name = preference.Name,
-            CustomersLink = preference.CustomersLink
+            Name = preference.Name
         };
 
         return Ok(response);

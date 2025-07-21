@@ -6,6 +6,6 @@ public class Preference
     : BaseEntity
 {
     public string Name { get; set; }
-    public ICollection<CustomerPreference> CustomersLink { get; set; } = new List<CustomerPreference>();
-    public ICollection<PromoCode> PromoCodes { get; set; }
+    public virtual ICollection<CustomerPreference> Customers { get; set; }
+    public virtual ICollection<PromoCode> PromoCodes { get; set; }
 }

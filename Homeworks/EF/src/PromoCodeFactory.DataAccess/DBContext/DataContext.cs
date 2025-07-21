@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PromoCodeFactory.Core.Domain.Administration;
 using PromoCodeFactory.Core.Domain.PromoCodeManagement;
-using PromoCodeFactory.DataAccess.Data;
-using System.Collections.Generic;
-using System.Linq;
 using PromoCodeFactory.DataAccess.Configuration;
 
 namespace PromoCodeFactory.DataAccess.DBContext;
@@ -43,7 +40,6 @@ public class DataContext : DbContext
         Database.EnsureDeleted();
         // Создаём новую
         Database.EnsureCreated();
-
     }
 
 }

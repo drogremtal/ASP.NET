@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PromoCodeFactory.DataAccess.DBContext;
 
 namespace PromoCodeFactory.DataAccess.Data
 {
-    public class  EfDbInit
+    public interface IEfDbInit
+    {
+        void Initialize();
+    }
+
+    public class  EfDbInit : IEfDbInit
     {
 
         private readonly DataContext _DataContext;

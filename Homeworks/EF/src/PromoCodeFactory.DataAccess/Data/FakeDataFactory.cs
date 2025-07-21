@@ -110,4 +110,26 @@ public static class FakeDataFactory
             return promoCodes;
         }
     }
+
+    public static IEnumerable<CustomerPreference> CustomerPreferences
+    {
+        get
+        {
+            var customerPreferences = new List<CustomerPreference>()
+            {
+                new CustomerPreference()
+                {
+                    CustomerId = Guid.Parse("a6c8c6b1-4349-45b0-ab31-244740aaf0f0"),
+                    PreferenceId = Guid.Parse("76324c47-68d2-472d-abb8-33cfa8cc0c84")
+                },
+                new CustomerPreference()
+                {
+                    CustomerId = Guid.Parse("a6c8c6b1-4349-45b0-ab31-244740aaf0f0"),
+                    PreferenceId = Guid.Parse("c4bda62e-fc74-4256-a956-4760b3858cbd")
+                }
+            };
+
+            return customerPreferences;
+        }
+    }
 }
