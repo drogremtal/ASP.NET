@@ -87,7 +87,27 @@ public static class FakeDataFactory
     }
 
     /// <summary>
-    /// TODO:Добавить данные
     /// </summary>
-    public static PromoCode[] PromoCodes { get; internal set; }
+    public static IEnumerable<PromoCode> PromoCodes
+    {
+        get
+        {
+            var promoCodes = new List<PromoCode>()
+            {
+                new PromoCode()
+                {
+                    Id = Guid.Parse("cb98e283-fcb0-4baa-8541-39ffe9a3fe38"),
+                    Code = "TOY20",
+                    ServiceInfo = "Скидка 20% на игрушки",
+                    PartnerName = "GameLand",
+                    BeginDate = DateTime.Now,
+                    EndDate = DateTime.Now.AddDays(14),
+                    PreferenceId = Guid.Parse("76324c47-68d2-472d-abb8-33cfa8cc0c84"),
+                    CustomerId = Guid.Parse("a6c8c6b1-4349-45b0-ab31-244740aaf0f0")
+                }
+            };
+
+            return promoCodes;
+        }
+    }
 }
