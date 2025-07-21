@@ -14,8 +14,6 @@ namespace PromoCodeFactory.DataAccess.Configuration
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
-
-
             builder.HasOne(e => e.Role)
                 .WithMany(r => r.Employees)
                 .HasForeignKey(e => e.RoleId)

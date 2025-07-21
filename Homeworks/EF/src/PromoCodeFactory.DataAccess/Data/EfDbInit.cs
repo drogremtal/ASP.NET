@@ -19,7 +19,25 @@ namespace PromoCodeFactory.DataAccess.Data
             _DataContext.Database.EnsureDeleted();
             // Создаём новую
             _DataContext.Database.EnsureCreated();
-            _DataContext.Database.EnsureCreated();
+
+
+            _DataContext.Roles.AddRange(FakeDataFactory.Roles);
+            _DataContext.SaveChanges();
+
+
+            _DataContext.Employees.AddRange(FakeDataFactory.Employees);
+            _DataContext.SaveChanges();
+
+
+            _DataContext.Preferences.AddRange(FakeDataFactory.Preferences);
+            _DataContext.SaveChanges();
+
+            _DataContext.Customers.AddRange(FakeDataFactory.Customers);
+            _DataContext.SaveChanges();
+
+            _DataContext.PromoCodes.AddRange(FakeDataFactory.PromoCodes);
+
+            _DataContext.SaveChanges();
         }
 
     }

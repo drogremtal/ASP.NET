@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using PromoCodeFactory.Core.Abstractions.Repositories;
+using PromoCodeFactory.Core.Domain.PromoCodeManagement;
+using PromoCodeFactory.WebHost.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using PromoCodeFactory.WebHost.Models;
 
 namespace PromoCodeFactory.WebHost.Controllers;
 
@@ -14,6 +16,17 @@ namespace PromoCodeFactory.WebHost.Controllers;
 public class PromocodesController
     : ControllerBase
 {
+
+    private readonly IRepository<PromoCode> promocodesRepository;
+    private readonly IRepository<Preference> preferenceRepository;
+    private readonly IRepository<Customer> customerRepository;
+    public PromocodesController(IRepository<PromoCode> promocodesRepository, IRepository<Preference> preferenceRepository, IRepository<Customer> customerRepository)
+    {
+        this.promocodesRepository = promocodesRepository;
+        this.preferenceRepository = preferenceRepository;
+        this.customerRepository = customerRepository;
+    }
+
     /// <summary>
     /// Получить все промокоды
     /// </summary>

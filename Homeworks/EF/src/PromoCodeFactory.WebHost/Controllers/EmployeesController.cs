@@ -48,7 +48,7 @@ public class EmployeesController
     /// <summary>
     /// Получить данные сотрудника по id
     /// </summary>
-    /// <returns></returns>
+    /// <returns>EmployeeResponse</returns>
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<EmployeeResponse>> GetEmployeeByIdAsync(Guid id)
     {

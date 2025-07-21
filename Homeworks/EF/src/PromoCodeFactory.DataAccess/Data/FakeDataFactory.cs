@@ -8,27 +8,6 @@ namespace PromoCodeFactory.DataAccess.Data;
 
 public static class FakeDataFactory
 {
-    public static IEnumerable<Employee> Employees => new List<Employee>()
-    {
-        new Employee()
-        {
-            Id = Guid.Parse("451533d5-d8d5-4a11-9c7b-eb9f14e1a32f"),
-            Email = "owner@somemail.ru",
-            FirstName = "Иван",
-            LastName = "Сергеев",
-            Role = Roles.FirstOrDefault(x => x.Name == "Admin"),
-            AppliedPromocodesCount = 5
-        },
-        new Employee()
-        {
-            Id = Guid.Parse("f766e2bf-340a-46ea-bff3-f1700b435895"),
-            Email = "andreev@somemail.ru",
-            FirstName = "Петр",
-            LastName = "Андреев",
-            Role = Roles.FirstOrDefault(x => x.Name == "PartnerManager"),
-            AppliedPromocodesCount = 10
-        },
-    };
 
     public static IEnumerable<Role> Roles => new List<Role>()
     {
@@ -45,6 +24,30 @@ public static class FakeDataFactory
             Description = "Партнерский менеджер"
         }
     };
+
+    public static IEnumerable<Employee> Employees => new List<Employee>()
+    {
+        new Employee()
+        {
+            Id = Guid.Parse("451533d5-d8d5-4a11-9c7b-eb9f14e1a32f"),
+            Email = "owner@somemail.ru",
+            FirstName = "Иван",
+            LastName = "Сергеев",
+            RoleId = Roles.FirstOrDefault(x => x.Name == "Admin")!.Id,
+            AppliedPromocodesCount = 5
+        },
+        new Employee()
+        {
+            Id = Guid.Parse("f766e2bf-340a-46ea-bff3-f1700b435895"),
+            Email = "andreev@somemail.ru",
+            FirstName = "Петр",
+            LastName = "Андреев",
+            RoleId = Roles.FirstOrDefault(x => x.Name == "PartnerManager")!.Id,
+            AppliedPromocodesCount = 10
+        },
+    };
+
+
 
     public static IEnumerable<Preference> Preferences => new List<Preference>()
     {
