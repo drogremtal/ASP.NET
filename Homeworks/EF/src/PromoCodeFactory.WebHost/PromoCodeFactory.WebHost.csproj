@@ -7,15 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PromoCodeFactory.Core\PromoCodeFactory.Core.csproj" />
-      <ProjectReference Include="..\PromoCodeFactory.DataAccess\PromoCodeFactory.DataAccess.csproj" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" />
+      <PackageReference Include="NSwag.AspNetCore" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11" />
-      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
-      <PackageReference Include="NSwag.AspNetCore" Version="14.1.0" />
-      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+      <ProjectReference Include="..\PromoCodeFactory.Core\PromoCodeFactory.Core.csproj" />
+      <ProjectReference Include="..\PromoCodeFactory.DataAccess\PromoCodeFactory.DataAccess.csproj" />
     </ItemGroup>
 
 </Project>

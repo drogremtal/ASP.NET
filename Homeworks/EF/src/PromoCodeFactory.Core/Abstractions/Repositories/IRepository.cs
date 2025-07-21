@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using PromoCodeFactory.Core.Domain;
 
-namespace PromoCodeFactory.Core.Abstractions.Repositories
-{
+namespace PromoCodeFactory.Core.Abstractions.Repositories;
+
     public interface IRepository<T>
         where T : BaseEntity
     {
@@ -12,4 +12,3 @@ namespace PromoCodeFactory.Core.Abstractions.Repositories
 
         Task<T> GetByIdAsync(Guid id);
     }
-}

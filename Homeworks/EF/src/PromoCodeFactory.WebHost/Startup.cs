@@ -3,16 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PromoCodeFactory.Core.Abstractions.Repositories;
-using PromoCodeFactory.Core.Domain.Administration;
-using PromoCodeFactory.Core.Domain.PromoCodeManagement;
-using PromoCodeFactory.DataAccess.Data;
-using PromoCodeFactory.DataAccess.Repositories;
-using System;
-using System.IO;
+using PromoCodeFactory.DataAccess.DBContext;
+// ReSharper disable All
 
-namespace PromoCodeFactory.WebHost
-{
+namespace PromoCodeFactory.WebHost;
+
     public class Startup
     {
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -68,4 +63,3 @@ namespace PromoCodeFactory.WebHost
             });
         }
     }
-}
