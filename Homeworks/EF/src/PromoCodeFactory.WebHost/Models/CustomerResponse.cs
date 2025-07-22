@@ -11,4 +11,6 @@ public class CustomerResponse
     public string Email { get; set; }
     //TODO: Добавить список предпочтений
     public List<PromoCodeShortResponse> PromoCodes { get; set; }
+
+    public List<PreferenceResponse> Preference { get; set; }
 }
