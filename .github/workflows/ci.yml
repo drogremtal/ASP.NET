@@ -20,8 +20,8 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: Restore dependencies
-        run: dotnet restore ./ASP.NET/Homeworks/UnitTests/src/PromoCodeFactory.sln
+      # - name: Restore dependencies
+      #   run: dotnet restore ./ASP.NET/Homeworks/UnitTests/src/PromoCodeFactory.sln
 
       - name: Build the solution
         run: dotnet build "./ASP.NET/Homeworks/UnitTests/src/PromoCodeFactory.sln" --configuration Release --no-restore
