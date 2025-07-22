@@ -20,13 +20,13 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Restore dependencies
-        run: dotnet restore ./PromoCodeFactory.sln
+        run: dotnet restore ./ASP.NET/Homeworks/UnitTests/src/PromoCodeFactory.sln
 
       - name: Build the solution
-        run: dotnet build ./PromoCodeFactory.sln --configuration Release --no-restore
+        run: dotnet build ./ASP.NET/Homeworks/UnitTests/src/PromoCodeFactory.sln --configuration Release --no-restore
 
       - name: Run unit tests
-        run: dotnet test ./PromoCodeFactory.UnitTests/PromoCodeFactory.UnitTests.csproj \
+        run: dotnet test ./ASP.NET/Homeworks/UnitTests/src/PromoCodeFactory.UnitTests/PromoCodeFactory.UnitTests.csproj \
           --configuration Release \
           --no-build \
           --logger "trx;LogFileName=TestResults.trx"
