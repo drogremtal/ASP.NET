@@ -1,0 +1,36 @@
+name: CI-UNIT Test
+on:
+  push:
+    branches:
+      - hw_test
+  pull_request:
+    branches:
+      - hw_test      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Set up .Net
+        uses: actions/setup=dotnet@v3
+        with: 
+          dotnet-version: '8.x'    
+
+      - name: Restore dependencies
+        run: dotnet build ./src/PromoCodeFactory.sln
+
+      - name: Build the solution
+        run: dotnet build ./src/PromoCodeFactory.sln
+
+      - name: Upload test result
+        run: dotnet build ./src/PromoCodeFactory.UnitTests/PromoCodeFactory.UnitTests.csproj --configuration Release --no-build --logger "trx;LogFileName=TestResults.trx"
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: TestResults
+          path: ../src/PromoCodeFactory.UnitTests/TestResults.trx
+
+
