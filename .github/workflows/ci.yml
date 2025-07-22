@@ -20,13 +20,13 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Restore dependencies
-        run: dotnet restore ./src/PromoCodeFactory.sln
+        run: dotnet restore ./PromoCodeFactory.sln
 
       - name: Build the solution
-        run: dotnet build ./src/PromoCodeFactory.sln --configuration Release --no-restore
+        run: dotnet build ./PromoCodeFactory.sln --configuration Release --no-restore
 
       - name: Run unit tests
-        run: dotnet test ./src/PromoCodeFactory.UnitTests/PromoCodeFactory.UnitTests.csproj \
+        run: dotnet test ./PromoCodeFactory.UnitTests/PromoCodeFactory.UnitTests.csproj \
           --configuration Release \
           --no-build \
           --logger "trx;LogFileName=TestResults.trx"
@@ -35,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: TestResults
-          path: ./src/PromoCodeFactory.UnitTests/TestResults/
+          path: ./PromoCodeFactory.UnitTests/TestResults/
